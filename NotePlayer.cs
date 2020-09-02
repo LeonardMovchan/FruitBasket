@@ -9,7 +9,7 @@ namespace GuesGame
 {
     class NotePlayer : Player
     {
-        public int[] numbersArray = new int[100];
+        public int[] payerNotes = new int[100];
 
 
         public new int GuessNumber()
@@ -17,39 +17,38 @@ namespace GuesGame
 
             Random random = new Random();
             int number = 0;
-            for (int i = 0; i < numbersArray.Length; i++)
+            int i;
+            for (i = 0; i < payerNotes.Length; i++)
             {
                 number = random.Next(40, 140);
-                if (isDup(number, numbersArray))
+                while(!(payerNotes.Contains(number)))
                 {
 
-                    number = random.Next(40, 140);
+                    payerNotes[i] = number;
+                    i++;
 
                 }
 
-                numbersArray[i] = number;
+                
 
             }
 
             totalNumberSheet.Add(number);
             return number;
-
-
-
         }
 
-        bool isDup(int number, int[] numbersArray)
-        {
-            foreach (var item in numbersArray)
-            {
-                if (item == number)
-                {
-                    return true;
-                }
+        //bool isDup(int number, int[] numbersArray)
+        //{
+        //    foreach (var item in numbersArray)
+        //    {
+        //        if (item == number)
+        //        {
+        //            return true;
+        //        }
 
-            }
-            return false;
-        }
+        //    }
+        //    return false;
+        //}
 
 
     }

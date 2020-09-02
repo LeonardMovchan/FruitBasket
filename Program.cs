@@ -11,11 +11,13 @@ namespace GuesGame
     {
         static void Main(string[] args)
         {
+
+            
             Console.Write("Please enter enter the weight of the basket between 40 and 140: ");
             int basketWeight = int.Parse(Console.ReadLine());
 
             int number = 0;
-            int counter = 0;
+            int totalAttemptscounter = 0;
 
             Player player1 = new Player();
             player1.Name = "James";
@@ -37,12 +39,12 @@ namespace GuesGame
 
             while (number != basketWeight)
             {
-                if (counter == 100) break;
+                if (totalAttemptscounter == 100) break;
 
 
                 number = player1.GuessNumber();
                 Console.WriteLine($"Player 1: {number} = {basketWeight}");
-                counter++;
+                totalAttemptscounter++;
                 if (number == basketWeight)
                 {
                     Console.WriteLine();
@@ -59,7 +61,7 @@ namespace GuesGame
                         Console.WriteLine("Player 2 is the winner");
                         break;
                     }
-                counter++;
+                totalAttemptscounter++;
 
                 number = player3.GuessNumber();
                 if (number == basketWeight)
@@ -69,7 +71,7 @@ namespace GuesGame
                     break;
                 }
 
-                counter++;
+                totalAttemptscounter++;
                 Console.WriteLine($"Player 3: {number} = {basketWeight}");
 
 
@@ -78,14 +80,14 @@ namespace GuesGame
                 Console.WriteLine("-----------------------");
 
 
-                counter ++;
+                totalAttemptscounter++;
             }
 
             Console.WriteLine();
-            Console.WriteLine($"{counter}");
+            Console.WriteLine($"{totalAttemptscounter}");
             Console.ReadKey();
 
-
+            
 
 
         }
