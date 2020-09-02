@@ -26,11 +26,7 @@ namespace GuesGame
 
                     payerNotes[i] = number;
                     i++;
-
-                }
-
-                
-
+                }               
             }
 
             totalNumberSheet.Add(number);

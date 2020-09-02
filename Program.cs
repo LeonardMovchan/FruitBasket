@@ -37,6 +37,13 @@ namespace GuesGame
             player4.Name = "Wiltor";
             player4.Type = "Cheater";
 
+            UberCheater player5 = new UberCheater();
+
+            player4.Name = "Bismarck";
+            player4.Type = "UberCheater";
+
+
+
             while (number != basketWeight)
             {
                 if (totalAttemptscounter == 100) break;
@@ -76,11 +83,29 @@ namespace GuesGame
 
 
                 number = player4.GuessNumber();
+
+                if (number == basketWeight)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Player 4 is the winner");
+                    break;
+                }
                 Console.WriteLine($"Player 4: {number} = {basketWeight}");
                 Console.WriteLine("-----------------------");
-
-
                 totalAttemptscounter++;
+
+                number = player5.GuessNumber();
+
+                if (number == basketWeight)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Player 5 is the winner");
+                    break;
+                }
+                Console.WriteLine($"Player 5: {number} = {basketWeight}");
+                Console.WriteLine("-----------------------");
+                totalAttemptscounter++;
+
             }
 
             Console.WriteLine();
