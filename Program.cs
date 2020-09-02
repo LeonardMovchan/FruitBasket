@@ -11,110 +11,135 @@ namespace GuesGame
     {
         static void Main(string[] args)
         {
-
-            
-            Console.Write("Please enter enter the weight of the basket between 40 and 140: ");
-            int basketWeight = int.Parse(Console.ReadLine());
-
-            int number = 0;
+            int guessNumber = 0;
             int totalAttemptscounter = 0;
-
-            Player player1 = new Player();
-            player1.Name = "James";
-            player1.Type = "CasualPlayer";
-
-
-            NotePlayer player2 = new NotePlayer();
-            player2.Name = "Carigan";
-            player2.Type = "NotePlayer";
-
-            UberPlayer player3 = new UberPlayer();
-            player3.Name = "Daniel";
-            player3.Type = "UberPlayer";
-
-            Cheater player4 = new Cheater();
-
-            player4.Name = "Wiltor";
-            player4.Type = "Cheater";
-
-            UberCheater player5 = new UberCheater();
-
-            player4.Name = "Bismarck";
-            player4.Type = "UberCheater";
-
-
-
-            while (number != basketWeight)
+            int basketWeight;
+            while (true)
             {
-                if (totalAttemptscounter == 100) break;
-
-
-                number = player1.GuessNumber();
-                Console.WriteLine($"Player 1: {number} = {basketWeight}");
-                totalAttemptscounter++;
-                if (number == basketWeight)
+                StartGame startgame = (StartGame)InputNumberValidation();
+                switch (startgame)
                 {
-                    Console.WriteLine();
-                    Console.WriteLine("Player 1 is the winner");
-                    break;
-                }
+                    case StartGame.BasketWeight:
+                        { 
 
-                number = player2.GuessNumber();
-                    Console.WriteLine($"Player 2: {number} = {basketWeight}");
 
-                    if (number == basketWeight)
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine("Player 2 is the winner");
+                         Console.Write("Please enter the weight of the fruit basket (min weight is 40kg, the max weight is 140kg): ");
+                         basketWeight = BasketWeightValidation();
+                        }break;
+                    case StartGame.NewPlayer:
+                        {
+                            Console.Write("Please enter player name: ");
+                            string name = Console.ReadLine();
+                            Console.Write("Please enter player type: ");
+                            string type = Console.ReadLine();
+
+                            Player player = new Player(name: name, type: type);
+                            PlayerKeeper.Add(player);
+
+                        }
                         break;
-                    }
-                totalAttemptscounter++;
 
-                number = player3.GuessNumber();
-                if (number == basketWeight)
-                {
-                    Console.WriteLine();
-                    Console.WriteLine("Player 3 is the winner");
-                    break;
+                        while (guessNumber != basketWeight)
+                        {
+                            if (totalAttemptscounter == 100) break;
+
+
+                            guessNumber = player1.GuessNumber();
+                            Console.WriteLine($"Player 1: {guessNumber} = {basketWeight}");
+                            totalAttemptscounter++;
+                            if (guessNumber == basketWeight)
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("Player 1 is the winner");
+                                break;
+                            }
+
+                            guessNumber = player2.GuessNumber();
+                            Console.WriteLine($"Player 2: {guessNumber} = {basketWeight}");
+
+                            if (guessNumber == basketWeight)
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("Player 2 is the winner");
+                                break;
+                            }
+                            totalAttemptscounter++;
+
+                            guessNumber = player3.GuessNumber();
+                            if (guessNumber == basketWeight)
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("Player 3 is the winner");
+                                break;
+                            }
+
+                            totalAttemptscounter++;
+                            Console.WriteLine($"Player 3: {guessNumber} = {basketWeight}");
+
+
+                            guessNumber = player4.GuessNumber();
+
+                            if (guessNumber == basketWeight)
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("Player 4 is the winner");
+                                break;
+                            }
+                            Console.WriteLine($"Player 4: {guessNumber} = {basketWeight}");
+                            Console.WriteLine("-----------------------");
+                            totalAttemptscounter++;
+
+                            guessNumber = player5.GuessNumber();
+
+                            if (guessNumber == basketWeight)
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("Player 5 is the winner");
+                                break;
+                            }
+                            Console.WriteLine($"Player 5: {guessNumber} = {basketWeight}");
+                            Console.WriteLine("-----------------------");
+                            totalAttemptscounter++;
+
+                        }
+
+                        Console.WriteLine();
+                        Console.WriteLine($"{totalAttemptscounter}");
+                        Console.ReadKey();
                 }
-
-                totalAttemptscounter++;
-                Console.WriteLine($"Player 3: {number} = {basketWeight}");
-
-
-                number = player4.GuessNumber();
-
-                if (number == basketWeight)
-                {
-                    Console.WriteLine();
-                    Console.WriteLine("Player 4 is the winner");
-                    break;
-                }
-                Console.WriteLine($"Player 4: {number} = {basketWeight}");
-                Console.WriteLine("-----------------------");
-                totalAttemptscounter++;
-
-                number = player5.GuessNumber();
-
-                if (number == basketWeight)
-                {
-                    Console.WriteLine();
-                    Console.WriteLine("Player 5 is the winner");
-                    break;
-                }
-                Console.WriteLine($"Player 5: {number} = {basketWeight}");
-                Console.WriteLine("-----------------------");
-                totalAttemptscounter++;
-
             }
+        }
 
-            Console.WriteLine();
-            Console.WriteLine($"{totalAttemptscounter}");
-            Console.ReadKey();
-
-            
-
+        public static int BasketWeightValidation()
+        {
+            int weight;
+            while (!int.TryParse(Console.ReadLine(), out weight) || weight < 40 || weight > 140)
+            {
+                Console.WriteLine("Please enter the wight of the basket (from 40 to 140)");
+            }
+            return weight;
 
         }
+        public static int InputNumberValidation()
+        {
+            int number;
+            while (!int.TryParse(Console.ReadLine(), out number) || number < 0)
+            {
+                Console.WriteLine("Please enter the number");
+            }
+            return number;
+        }
+
+
+        enum StartGame
+        {
+            NoItem = 0,
+            BasketWeight = 1,
+            NewPlayer = 2
+        }
     }
+    
+
+
+
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GuesGame
 {
-    class UberPlayer : Player
+    class UberPlayer : CasualPlayer
     {
         public static int number = 39;
 
@@ -17,8 +17,7 @@ namespace GuesGame
             number++;
             totalNumberSheet.Add(number);
             return number;
-
-            
+          
         }
     }
 }

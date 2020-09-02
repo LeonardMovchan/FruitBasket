@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GuesGame 
 {
-    class UberCheater : Player
+    class UberCheater : CasualPlayer
     {
         public static int number = 40;
         public new int GuessNumber()

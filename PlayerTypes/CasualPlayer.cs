@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 namespace GuesGame
 {
   
-      public class Player
-    {
-
-        
+      public class CasualPlayer
+    {        
         private static string name;
         private static string type;
 
@@ -29,10 +27,5 @@ namespace GuesGame
             totalNumberSheet.Add(number);
             return number;
         }
-
-
-
-
-
     }
 }

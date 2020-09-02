@@ -43,11 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Players\Cheater.cs" />
-    <Compile Include="Players\UberCheater.cs" />
-    <Compile Include="Players\UberPlayer.cs" />
-    <Compile Include="Players\NotePlayer.cs" />
-    <Compile Include="Players\Player.cs" />
+    <Compile Include="PlayerKeeper.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="PlayerTypes\Cheater.cs" />
+    <Compile Include="PlayerTypes\UberCheater.cs" />
+    <Compile Include="PlayerTypes\UberPlayer.cs" />
+    <Compile Include="PlayerTypes\NotePlayer.cs" />
+    <Compile Include="PlayerTypes\CasualPlayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GuesGame
 {
-    class Cheater : Player
+    class Cheater : CasualPlayer
     {
         public override int GuessNumber()
         {

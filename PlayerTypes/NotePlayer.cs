@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GuesGame
 {
-    class NotePlayer : Player
+    class NotePlayer : CasualPlayer
     {
         public int[] payerNotes = new int[100];
 
@@ -32,21 +32,6 @@ namespace GuesGame
             totalNumberSheet.Add(number);
             return number;
         }
-
-        //bool isDup(int number, int[] numbersArray)
-        //{
-        //    foreach (var item in numbersArray)
-        //    {
-        //        if (item == number)
-        //        {
-        //            return true;
-        //        }
-
-        //    }
-        //    return false;
-        //}
-
-
     }
 
 
