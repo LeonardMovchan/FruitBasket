@@ -7,32 +7,34 @@ using System.Threading.Tasks;
 
 namespace GuesGame
 {
-    class NotePlayer : Player, IGuessNumber
+    class NotePlayer : Player
     {
-        
+        public int[] numbersArray = new int[100];
+
 
         public new int GuessNumber()
         {
-            int[] numbersArray = new int[100];
-
 
             Random random = new Random();
             int number = 0;
-            for (int i = 0; i < numbersArray.Length -1;)
+            for (int i = 0; i < numbersArray.Length; i++)
             {
                 number = random.Next(40, 140);
                 if (isDup(number, numbersArray))
                 {
-                    i++;
+
                     number = random.Next(40, 140);
 
                 }
+
                 numbersArray[i] = number;
-                
+
             }
 
             totalNumberSheet.Add(number);
             return number;
+
+
 
         }
 
@@ -44,13 +46,14 @@ namespace GuesGame
                 {
                     return true;
                 }
+
             }
             return false;
         }
 
 
-
     }
+
 
 
 

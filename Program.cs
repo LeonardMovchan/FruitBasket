@@ -37,43 +37,49 @@ namespace GuesGame
 
             while (number != basketWeight)
             {
+                if (counter == 100) break;
 
 
                 number = player1.GuessNumber();
                 Console.WriteLine($"Player 1: {number} = {basketWeight}");
+                counter++;
                 if (number == basketWeight)
                 {
                     Console.WriteLine();
                     Console.WriteLine("Player 1 is the winner");
                     break;
                 }
-               
-                number = player2.GuessNumber();
-                Console.WriteLine($"Player 2: {number} = {basketWeight}");
 
-                if (number == basketWeight)
-                {
-                    Console.WriteLine();
-                    Console.WriteLine("Player 2 is the winner");
-                    break;
-                }
-               
-                number = player3.GuessNumber();           
+                number = player2.GuessNumber();
+                    Console.WriteLine($"Player 2: {number} = {basketWeight}");
+
+                    if (number == basketWeight)
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Player 2 is the winner");
+                        break;
+                    }
+                counter++;
+
+                number = player3.GuessNumber();
                 if (number == basketWeight)
                 {
                     Console.WriteLine();
                     Console.WriteLine("Player 3 is the winner");
                     break;
                 }
-               
+
+                counter++;
                 Console.WriteLine($"Player 3: {number} = {basketWeight}");
-               
-                
-                number = player4.GuessNumber();               
+
+
+                number = player4.GuessNumber();
                 Console.WriteLine($"Player 4: {number} = {basketWeight}");
                 Console.WriteLine("-----------------------");
-                counter++;
-            } 
+
+
+                counter ++;
+            }
 
             Console.WriteLine();
             Console.WriteLine($"{counter}");

@@ -20,7 +20,7 @@ namespace GuesGame
                 {
                     number = rnd.Next(40, 140);
                 }
-                return number;
+                
             }
             return number;
         }
