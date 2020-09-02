@@ -10,8 +10,7 @@ namespace GuesGame
     {
         public static int number = 40;
         public new int GuessNumber()
-        {
-                   
+        {                
             int i;
             for (i = 0; i < totalNumberSheet.ToArray().Length; i++)
             {               
@@ -20,8 +19,7 @@ namespace GuesGame
 
                     number++;
                                        
-                }
-                
+                }             
             }
             totalNumberSheet.Add(number);
             return number;
