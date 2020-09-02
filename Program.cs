@@ -12,8 +12,11 @@ namespace GuesGame
         static void Main(string[] args)
         {
 
-            int basketWeight = 78;
-            int guessNumber = 0;
+            
+            Console.Write("Please enter enter the weight of the basket between 40 and 140: ");
+            int basketWeight = int.Parse(Console.ReadLine());
+
+            int number = 0;
             int totalAttemptscounter = 0;
 
             Player player1 = new Player();
@@ -22,7 +25,7 @@ namespace GuesGame
 
 
             NotePlayer player2 = new NotePlayer();
-            player2.Name = "Kerrigan";
+            player2.Name = "Carigan";
             player2.Type = "NotePlayer";
 
             UberPlayer player3 = new UberPlayer();
@@ -31,7 +34,7 @@ namespace GuesGame
 
             Cheater player4 = new Cheater();
 
-            player4.Name = "Zeratul";
+            player4.Name = "Wiltor";
             player4.Type = "Cheater";
 
             UberCheater player5 = new UberCheater();
@@ -40,25 +43,26 @@ namespace GuesGame
             player4.Type = "UberCheater";
 
 
-            while (guessNumber != basketWeight)
+
+            while (number != basketWeight)
             {
                 if (totalAttemptscounter == 100) break;
 
 
-                guessNumber = player1.GuessNumber();
-                //Console.WriteLine($"Player 1: {guessNumber} = {basketWeight}");
+                number = player1.GuessNumber();
+                Console.WriteLine($"Player 1: {number} = {basketWeight}");
                 totalAttemptscounter++;
-                if (guessNumber == basketWeight)
+                if (number == basketWeight)
                 {
                     Console.WriteLine();
                     Console.WriteLine("Player 1 is the winner");
                     break;
                 }
 
-                guessNumber = player2.GuessNumber();
-                    //Console.WriteLine($"Player 2: {guessNumber} = {basketWeight}");
+                number = player2.GuessNumber();
+                    Console.WriteLine($"Player 2: {number} = {basketWeight}");
 
-                    if (guessNumber == basketWeight)
+                    if (number == basketWeight)
                     {
                         Console.WriteLine();
                         Console.WriteLine("Player 2 is the winner");
@@ -66,8 +70,8 @@ namespace GuesGame
                     }
                 totalAttemptscounter++;
 
-                guessNumber = player3.GuessNumber();
-                if (guessNumber == basketWeight)
+                number = player3.GuessNumber();
+                if (number == basketWeight)
                 {
                     Console.WriteLine();
                     Console.WriteLine("Player 3 is the winner");
@@ -75,30 +79,30 @@ namespace GuesGame
                 }
 
                 totalAttemptscounter++;
-                //Console.WriteLine($"Player 3: {guessNumber} = {basketWeight}");
+                Console.WriteLine($"Player 3: {number} = {basketWeight}");
 
 
-                guessNumber = player4.GuessNumber();
+                number = player4.GuessNumber();
 
-                if (guessNumber == basketWeight)
+                if (number == basketWeight)
                 {
                     Console.WriteLine();
                     Console.WriteLine("Player 4 is the winner");
                     break;
                 }
-                //Console.WriteLine($"Player 4: {guessNumber} = {basketWeight}");
+                Console.WriteLine($"Player 4: {number} = {basketWeight}");
                 Console.WriteLine("-----------------------");
                 totalAttemptscounter++;
 
-                guessNumber = player5.GuessNumber();
+                number = player5.GuessNumber();
 
-                if (guessNumber == basketWeight)
+                if (number == basketWeight)
                 {
                     Console.WriteLine();
                     Console.WriteLine("Player 5 is the winner");
                     break;
                 }
-                //Console.WriteLine($"Player 5: {guessNumber} = {basketWeight}");
+                Console.WriteLine($"Player 5: {number} = {basketWeight}");
                 Console.WriteLine("-----------------------");
                 totalAttemptscounter++;
 

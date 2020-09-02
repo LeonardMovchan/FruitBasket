@@ -11,6 +11,7 @@ namespace GuesGame
     {
         public int[] payerNotes = new int[100];
 
+
         public new int GuessNumber()
         {
 
@@ -31,6 +32,20 @@ namespace GuesGame
             totalNumberSheet.Add(number);
             return number;
         }
+
+        //bool isDup(int number, int[] numbersArray)
+        //{
+        //    foreach (var item in numbersArray)
+        //    {
+        //        if (item == number)
+        //        {
+        //            return true;
+        //        }
+
+        //    }
+        //    return false;
+        //}
+
 
     }
 

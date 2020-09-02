@@ -22,7 +22,6 @@ namespace GuesGame
                 }
                 
             }
-            totalNumberSheet.Add(number);
             return number;
         }
     }
