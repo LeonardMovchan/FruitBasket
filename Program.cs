@@ -17,8 +17,11 @@ namespace GuesGame
             int guessNumber = 0;
             int totalAttemptscounter = 0;
             
+            
             while (guessNumber != basketWeight)
             {
+                int totalPlayers = PlayerKeeper._player.ToArray().Length;
+
                 if (totalAttemptscounter == 100) break;
 
                 Console.WriteLine("=============MENU=============");               
@@ -78,6 +81,8 @@ namespace GuesGame
                         break;
                     case StartGame.PlayGame:
                         {
+                            if(totalPlayers >= 2 && totalPlayers <= 8) 
+                            { 
                             while (guessNumber != basketWeight)
                             {
                                 for (int i = 0; i < PlayerKeeper._player.ToArray().Length ; i++)
@@ -127,11 +132,18 @@ namespace GuesGame
                                 Console.WriteLine();
                                 Console.WriteLine($"{totalAttemptscounter}");
                                 Console.ReadKey();
+                                }
+
                             }
+                            else
+                            {
+                                Console.WriteLine("The minimum number of player is 2 nad maximum is 8");
+                            }
+                        }
                             break;
 
 
-                        }
+                        
                 }
               
             }
