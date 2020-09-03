@@ -13,26 +13,29 @@ namespace GuesGame
         {
             Console.Write("Please enter the weight of the fruit basket (min weight is 40kg, the max weight is 140kg): ");
             int basketWeight = BasketWeightValidation();
-
             int guessNumber = 0;
             int totalAttemptscounter = 0;
-            
-            
-            while (guessNumber != basketWeight)
+
+
+            do  
             {
                 int totalPlayers = PlayerKeeper._player.ToArray().Length;
-
-                if (totalAttemptscounter == 100) break;
-
-                Console.WriteLine("=============MENU=============");               
-                Console.WriteLine("1. Please enter the name and type of the player");
+                
+                Console.Clear();
+                Console.WriteLine("=============MENU=============");
+                Console.WriteLine("1. Add new player");
                 Console.WriteLine("2. Play a game");
-                Console.WriteLine("4. exit");
+                Console.WriteLine("3. Remove Player at index");
+                Console.WriteLine("4. Reset game");
+                Console.WriteLine("5. Exit");
                 StartGame startgame = (StartGame)InputNumberValidation();
                 switch (startgame)
-                {                  
+                {
                     case StartGame.NewPlayer:
                         {
+                            Console.Clear();
+                            Console.WriteLine("Please enter the name and type of the player");
+
                             Console.Write("Please enter player name: ");
                             string name = Console.ReadLine();
 
@@ -53,24 +56,30 @@ namespace GuesGame
                                 case PlayerType.CasualPlayer:
                                     {
                                         type = "Casual Player";
-                                    }break;
+                                    }
+                                    break;
                                 case PlayerType.NotePlayer:
                                     {
                                         type = "Note Player";
-                                    }break;
+                                    }
+                                    break;
                                 case PlayerType.UberPlayer:
                                     {
                                         type = "Uber Player";
-                                    }break;
+                                    }
+                                    break;
                                 case PlayerType.Cheater:
                                     {
                                         type = "Cheater";
-                                    }break;
+                                    }
+                                    break;
                                 case PlayerType.UberCheater:
                                     {
                                         type = "Uber Cheater";
-                                    }break;
-                                default: Console.WriteLine("There is no such player type");
+                                    }
+                                    break;
+                                default:
+                                    Console.WriteLine("There is no such player type");
                                     break;
                             }
 
@@ -81,73 +90,135 @@ namespace GuesGame
                         break;
                     case StartGame.PlayGame:
                         {
-                            if(totalPlayers >= 2 && totalPlayers <= 8) 
-                            { 
-                            while (guessNumber != basketWeight)
+
+                            if (totalPlayers >= 2 && totalPlayers <= 8)
                             {
-                                for (int i = 0; i < PlayerKeeper._player.ToArray().Length ; i++)
+                                while (guessNumber != basketWeight)
                                 {
-                                  
-                                    if(PlayerKeeper._player[i].Type == "Casual Player")
+                                    if (totalAttemptscounter != 100)
                                     {
-                                        guessNumber = CasualPlayer.GuessNumber();
 
-                                        Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
-                                        totalAttemptscounter++;
-                                      
+                                        for (int i = 0; i < PlayerKeeper._player.ToArray().Length; i++)
+                                        {
+
+                                            if (PlayerKeeper._player[i].Type == "Casual Player")
+                                            {
+                                                guessNumber = CasualPlayer.GuessNumber();
+
+                                                Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
+                                                totalAttemptscounter++;
+                                                if (guessNumber == basketWeight)
+                                                {
+                                                    Winner(i, guessNumber);                                                   
+                                                    break;
+                                                }
+
+                                            }
+
+                                            if (PlayerKeeper._player[i].Type == "Note Player")
+                                            {
+                                                guessNumber = NotePlayer.GuessNumber();
+                                                Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
+                                                totalAttemptscounter++;
+                                                if (guessNumber == basketWeight)
+                                                {
+                                                    Winner(i,guessNumber);                                                    
+                                                    break;
+                                                }
+
+                                            }
+
+                                            if (PlayerKeeper._player[i].Type == "Uber Player")
+                                            {
+                                                guessNumber = UberPlayer.GuessNumber();
+
+
+                                                Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
+                                                totalAttemptscounter++;
+                                                if (guessNumber == basketWeight)
+                                                {
+                                                    Winner(i, guessNumber);                                                  
+                                                    break;
+                                                }
+
+                                            }
+
+                                            if (PlayerKeeper._player[i].Type == "Cheater")
+                                            {
+                                                guessNumber = Cheater.GuessNumber();
+                                                Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
+                                                totalAttemptscounter++;
+
+                                                if (guessNumber == basketWeight)
+                                                {
+                                                    Winner(i, guessNumber);                                                    
+                                                    break;
+                                                }
+
+                                            }
+
+                                            if (PlayerKeeper._player[i].Type == "Uber Cheater")
+                                            {
+                                                guessNumber = UberCheater.GuessNumber();
+                                                Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
+                                                totalAttemptscounter++;
+
+                                                if (guessNumber == basketWeight)
+                                                {
+                                                    Winner(i, guessNumber);                                                   
+                                                    break;
+                                                }
+
+                                            }
+                                        }
                                     }
-
-                                    if (PlayerKeeper._player[i].Type == "Note Player")
+                                    else
                                     {
-                                        guessNumber = NotePlayer.GuessNumber();
-                                        Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
-                                        totalAttemptscounter++;
+                                        Console.WriteLine("Maximum number of attempts reached! ");
+                                        Console.ReadKey();
+                                        
 
+                                        break;
                                     }
-
-                                    if (PlayerKeeper._player[i].Type == "Uber Player")
-                                    {
-                                        guessNumber = UberPlayer.GuessNumber();
-                                        Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
-                                        totalAttemptscounter++;
-
-                                    }
-
-                                    if (PlayerKeeper._player[i].Type == "Cheater")
-                                    {
-                                        guessNumber = Cheater.GuessNumber();
-                                        Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
-                                        totalAttemptscounter++;
-
-                                    }
-
-                                    if (PlayerKeeper._player[i].Type == "Uber Cheater")
-                                    {
-                                        guessNumber = UberCheater.GuessNumber();
-                                        Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
-                                        totalAttemptscounter++;
-
-                                    }
-                                }
-                                Console.WriteLine();
-                                Console.WriteLine($"{totalAttemptscounter}");
-                                Console.ReadKey();
+                                    Console.WriteLine();
+                                    Console.WriteLine($"{totalAttemptscounter}");
+                                    Console.ReadKey();
                                 }
 
                             }
                             else
                             {
-                                Console.WriteLine("The minimum number of player is 2 nad maximum is 8");
+                                Console.WriteLine("The minimum number of player is 2 and maximum is 8");
                             }
                         }
-                            break;
+                        break;
+                    case StartGame.RemovePlayer:
+                        {
+                            Console.Clear();
+                            Console.Write("Please enter the index of the player you would like to remove: ");
+                            IndexInputValidation();
+                            
+                        }break;
+                    case StartGame.ResetGame:
+                        {
+                            totalAttemptscounter = 0;
+                            guessNumber = 0;
+                        }
+                        break;
+                    case StartGame.Exit:
+                        {
+                            return;
+                        }
+                    default:
+                        {
+                            Console.WriteLine("There is no such command");
+                        }break;
+                    }
 
+                
+            } while (true);
 
-                        
-                }
-              
-            }
-         
+            
         }
         public static int BasketWeightValidation()
         {
@@ -169,12 +240,45 @@ namespace GuesGame
             return number;
         }
 
+       
+        public static int IndexInputValidation()
+        {
+            int number;
+            while (!int.TryParse(Console.ReadLine(), out number) || number < 0)
+            {
+                Console.WriteLine("Please enter the correct index");
+            }
+
+            if (number < PlayerKeeper._player.ToArray().Length)
+            {
+                PlayerKeeper.RemovePlayer(number);
+                Console.WriteLine($"Player and index {number} was sucesffully removed from the  game");
+                Console.ReadKey();
+            }
+            else Console.WriteLine("There is no such player index");
+
+
+            
+
+            return number;
+        }
+
+        public static void Winner(int i, int guessNumber)
+        {
+            Console.Clear();
+            Console.WriteLine($"Winner!!!\nPlayer: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
+            Console.ReadKey();
+            
+        }
 
         enum StartGame
         {
-            NoItem = 0,            
+            NoItem = 0,
             NewPlayer = 1,
             PlayGame = 2,
+            RemovePlayer =3,
+            ResetGame = 4,
+            Exit = 5
         }
         enum PlayerType
         {
@@ -183,11 +287,11 @@ namespace GuesGame
             NotePlayer = 2,
             UberPlayer = 3,
             Cheater = 4,
-            UberCheater =5
+            UberCheater = 5
 
         }
     }
-    
+
 
 
 

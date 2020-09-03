@@ -10,7 +10,7 @@ namespace GuesGame
 {
     class UberPlayer : CasualPlayer
     {
-        public static int number = 39;
+        private static int number = 39;
 
         public static new int GuessNumber()
         {

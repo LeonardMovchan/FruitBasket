@@ -20,5 +20,13 @@ namespace GuesGame
         {
             return $"Players name: {this.Name}\nPlayer type: {this.Type}";
         }
+
+        public static void Winner(int i, int guessNumber)
+        {
+            Console.Clear();
+            Console.WriteLine($"Winner!!!\nPlayer: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
+            Console.ReadKey();
+
+        }
     }
 }

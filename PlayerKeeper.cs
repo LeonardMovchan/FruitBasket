@@ -14,6 +14,11 @@ namespace GuesGame
         {
             _player.Add(player);
         }
-       
+
+        public static void RemovePlayer(int index)
+        {
+            _player.RemoveAt(index);
+        }
+
     }
 }
