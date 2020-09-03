@@ -9,7 +9,7 @@ namespace GuesGame
     class UberCheater : CasualPlayer
     {
         public static int number = 40;
-        public new int GuessNumber()
+        public static new int GuessNumber()
         {
                    
             int i;

@@ -11,7 +11,7 @@ namespace GuesGame
         public static new int GuessNumber()
         {
             Random rnd = new Random();
-            int number = 0;
+            int number = rnd.Next(40, 140);
 
             foreach (int item in totalNumberSheet.ToArray())
             {
@@ -20,8 +20,11 @@ namespace GuesGame
                 {
                     number = rnd.Next(40, 140);
                 }
+
+
                 
             }
+            totalNumberSheet.Add(number);
             return number;
         }
     }

@@ -9,10 +9,10 @@ namespace GuesGame
 {
     class NotePlayer : CasualPlayer
     {
-        public int[] payerNotes = new int[100];
+        public static int[] payerNotes = new int[100];
 
 
-        public new int GuessNumber()
+        public static new int GuessNumber()
         {
 
             Random random = new Random();

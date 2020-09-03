@@ -87,12 +87,43 @@ namespace GuesGame
                                     {
                                         guessNumber = CasualPlayer.GuessNumber();
 
-                                        Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessd number: {guessNumber}");
+                                        Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
+                                        totalAttemptscounter++;
+                                      
+                                    }
+
+                                    if (PlayerKeeper._player[i].Type == "Note Player")
+                                    {
+                                        guessNumber = NotePlayer.GuessNumber();
+                                        Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
                                         totalAttemptscounter++;
 
-                                        
                                     }
-                               }
+
+                                    if (PlayerKeeper._player[i].Type == "Uber Player")
+                                    {
+                                        guessNumber = UberPlayer.GuessNumber();
+                                        Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
+                                        totalAttemptscounter++;
+
+                                    }
+
+                                    if (PlayerKeeper._player[i].Type == "Cheater")
+                                    {
+                                        guessNumber = Cheater.GuessNumber();
+                                        Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
+                                        totalAttemptscounter++;
+
+                                    }
+
+                                    if (PlayerKeeper._player[i].Type == "Uber Cheater")
+                                    {
+                                        guessNumber = UberCheater.GuessNumber();
+                                        Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
+                                        totalAttemptscounter++;
+
+                                    }
+                                }
                                 Console.WriteLine();
                                 Console.WriteLine($"{totalAttemptscounter}");
                                 Console.ReadKey();
