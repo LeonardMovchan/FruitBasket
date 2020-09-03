@@ -16,7 +16,6 @@ namespace GuesGame
             int guessNumber = 0;
             int totalAttemptscounter = 0;
 
-
             do  
             {
                 int totalPlayers = PlayerKeeper._player.ToArray().Length;
@@ -86,12 +85,10 @@ namespace GuesGame
                             Player player = new Player(name: name, type: type);
                             PlayerKeeper.Add(player);
                             
-
                         }
                         break;
                     case StartGame.PlayGame:
                         {
-
                             if (totalPlayers >= 2 && totalPlayers <= 8)
                             {
                                 while (guessNumber != basketWeight)
@@ -176,6 +173,9 @@ namespace GuesGame
                                     else
                                     {
                                         Console.WriteLine("Maximum number of attempts reached! ");
+                                        int closestNumber = ClosestNumber(basketWeight);
+
+                                        Console.WriteLine($"The winner is number: {closestNumber}");
                                         Console.ReadKey();
                                         
 
@@ -215,7 +215,9 @@ namespace GuesGame
                         }
                     default:
                         {
+                            Console.Clear();
                             Console.WriteLine("There is no such command");
+                            Console.ReadKey();                           
                         }break;
                     }
 
@@ -224,7 +226,10 @@ namespace GuesGame
 
             
         }
-     
+        public static int ClosestNumber(int basketWeight)
+        {
+          return CasualPlayer.totalNumberSheet.ToArray().Aggregate((current, next) => Math.Abs((long)current - basketWeight) < Math.Abs((long)next - basketWeight) ? current : next);
+        }
         enum StartGame
         {
             NoItem = 0,
