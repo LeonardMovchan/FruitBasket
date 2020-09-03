@@ -7,9 +7,14 @@ namespace GuesGame
   
       public class CasualPlayer
     {        
+
   
-        public static List<int> totalNumberSheet = new List<int>();
+        internal static List<int> totalNumberSheet = new List<int>();
     
+        public static void ClearTotalNumberSheet()
+        {
+            totalNumberSheet.Clear();
+        }
         public static int GuessNumber()
         {
             int number;

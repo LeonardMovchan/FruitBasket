@@ -12,7 +12,7 @@ namespace GuesGame
         static void Main(string[] args)
         {
             Console.Write("Please enter the weight of the fruit basket (min weight is 40kg, the max weight is 140kg): ");
-            int basketWeight = BasketWeightValidation();
+            int basketWeight = Validation.BasketWeightValidation();
             int guessNumber = 0;
             int totalAttemptscounter = 0;
 
@@ -28,7 +28,7 @@ namespace GuesGame
                 Console.WriteLine("3. Remove Player at index");
                 Console.WriteLine("4. Reset game");
                 Console.WriteLine("5. Exit");
-                StartGame startgame = (StartGame)InputNumberValidation();
+                StartGame startgame = (StartGame)Validation.InputNumberValidation();
                 switch (startgame)
                 {
                     case StartGame.NewPlayer:
@@ -49,7 +49,7 @@ namespace GuesGame
                             Console.WriteLine("5. Uber Cheater");
                             string type = "";
 
-                            PlayerType playerType = (PlayerType)InputNumberValidation();
+                            PlayerType playerType = (PlayerType)Validation.InputNumberValidation();
 
                             switch (playerType)
                             {
@@ -85,6 +85,7 @@ namespace GuesGame
 
                             Player player = new Player(name: name, type: type);
                             PlayerKeeper.Add(player);
+                            
 
                         }
                         break;
@@ -109,7 +110,7 @@ namespace GuesGame
                                                 totalAttemptscounter++;
                                                 if (guessNumber == basketWeight)
                                                 {
-                                                    Winner(i, guessNumber);                                                   
+                                                    Player.Winner(i, guessNumber);                                                   
                                                     break;
                                                 }
 
@@ -122,7 +123,7 @@ namespace GuesGame
                                                 totalAttemptscounter++;
                                                 if (guessNumber == basketWeight)
                                                 {
-                                                    Winner(i,guessNumber);                                                    
+                                                    Player.Winner(i,guessNumber);                                                    
                                                     break;
                                                 }
 
@@ -137,7 +138,7 @@ namespace GuesGame
                                                 totalAttemptscounter++;
                                                 if (guessNumber == basketWeight)
                                                 {
-                                                    Winner(i, guessNumber);                                                  
+                                                    Player.Winner(i, guessNumber);                                                  
                                                     break;
                                                 }
 
@@ -151,7 +152,7 @@ namespace GuesGame
 
                                                 if (guessNumber == basketWeight)
                                                 {
-                                                    Winner(i, guessNumber);                                                    
+                                                    Player.Winner(i, guessNumber);                                                    
                                                     break;
                                                 }
 
@@ -165,7 +166,7 @@ namespace GuesGame
 
                                                 if (guessNumber == basketWeight)
                                                 {
-                                                    Winner(i, guessNumber);                                                   
+                                                    Player.Winner(i, guessNumber);                                                   
                                                     break;
                                                 }
 
@@ -196,13 +197,16 @@ namespace GuesGame
                         {
                             Console.Clear();
                             Console.Write("Please enter the index of the player you would like to remove: ");
-                            IndexInputValidation();
+                            Validation.IndexInputValidation();
                             
                         }break;
                     case StartGame.ResetGame:
                         {
                             totalAttemptscounter = 0;
                             guessNumber = 0;
+                            CasualPlayer.ClearTotalNumberSheet();
+                            UberPlayer.Number = 39;
+                            UberCheater.Number = 40;
                         }
                         break;
                     case StartGame.Exit:
@@ -220,57 +224,7 @@ namespace GuesGame
 
             
         }
-        public static int BasketWeightValidation()
-        {
-            int weight;
-            while (!int.TryParse(Console.ReadLine(), out weight) || weight < 40 || weight > 140)
-            {
-                Console.WriteLine("Please enter the wight of the basket (from 40 to 140)");
-            }
-            return weight;
-
-        }
-        public static int InputNumberValidation()
-        {
-            int number;
-            while (!int.TryParse(Console.ReadLine(), out number) || number < 0)
-            {
-                Console.WriteLine("Please enter the number");
-            }
-            return number;
-        }
-
-       
-        public static int IndexInputValidation()
-        {
-            int number;
-            while (!int.TryParse(Console.ReadLine(), out number) || number < 0)
-            {
-                Console.WriteLine("Please enter the correct index");
-            }
-
-            if (number < PlayerKeeper._player.ToArray().Length)
-            {
-                PlayerKeeper.RemovePlayer(number);
-                Console.WriteLine($"Player and index {number} was sucesffully removed from the  game");
-                Console.ReadKey();
-            }
-            else Console.WriteLine("There is no such player index");
-
-
-            
-
-            return number;
-        }
-
-        public static void Winner(int i, int guessNumber)
-        {
-            Console.Clear();
-            Console.WriteLine($"Winner!!!\nPlayer: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
-            Console.ReadKey();
-            
-        }
-
+     
         enum StartGame
         {
             NoItem = 0,

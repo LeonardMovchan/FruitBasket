@@ -8,7 +8,9 @@ namespace GuesGame
 {
     class UberCheater : CasualPlayer
     {
-        public static int number = 40;
+        private static int number = 40;
+
+        public static int Number { get { return number; } set { number = value; } }
         public static new int GuessNumber()
         {
                    

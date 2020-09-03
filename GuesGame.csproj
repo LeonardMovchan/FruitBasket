@@ -52,6 +52,7 @@
     <Compile Include="PlayerTypes\CasualPlayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\Validation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
