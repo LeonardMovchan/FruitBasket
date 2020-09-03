@@ -8,7 +8,7 @@ namespace GuesGame
 {
     class Cheater : CasualPlayer
     {
-        public override int GuessNumber()
+        public static new int GuessNumber()
         {
             Random rnd = new Random();
             int number = 0;

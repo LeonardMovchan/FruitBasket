@@ -12,7 +12,7 @@ namespace GuesGame
     {
         public static int number = 39;
 
-        public override int GuessNumber()
+        public static new int GuessNumber()
         {
             number++;
             totalNumberSheet.Add(number);
