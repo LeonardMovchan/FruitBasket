@@ -16,10 +16,12 @@ namespace GuesGame
             int guessNumber = 0;
             int totalAttemptscounter = 0;
 
-            do  
+            var numbersGuessedByThePlayers = new Dictionary<int, Player>();
+
+            do
             {
                 int totalPlayers = PlayerKeeper._player.ToArray().Length;
-                
+
                 Console.Clear();
                 Console.WriteLine("=============MENU=============");
                 Console.WriteLine("1. Add new player");
@@ -84,7 +86,7 @@ namespace GuesGame
 
                             Player player = new Player(name: name, type: type);
                             PlayerKeeper.Add(player);
-                            
+
                         }
                         break;
                     case StartGame.PlayGame:
@@ -104,10 +106,12 @@ namespace GuesGame
                                                 guessNumber = CasualPlayer.GuessNumber();
 
                                                 Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
+                                                AddUniqueNumberToDictonary(numbersGuessedByThePlayers, guessNumber, i);
+
                                                 totalAttemptscounter++;
                                                 if (guessNumber == basketWeight)
                                                 {
-                                                    Player.Winner(i, guessNumber);                                                   
+                                                    Player.Winner(i, guessNumber);
                                                     break;
                                                 }
 
@@ -117,10 +121,11 @@ namespace GuesGame
                                             {
                                                 guessNumber = NotePlayer.GuessNumber();
                                                 Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
+                                                AddUniqueNumberToDictonary(numbersGuessedByThePlayers, guessNumber, i);
                                                 totalAttemptscounter++;
                                                 if (guessNumber == basketWeight)
                                                 {
-                                                    Player.Winner(i,guessNumber);                                                    
+                                                    Player.Winner(i, guessNumber);
                                                     break;
                                                 }
 
@@ -132,10 +137,11 @@ namespace GuesGame
 
 
                                                 Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
+                                                AddUniqueNumberToDictonary(numbersGuessedByThePlayers, guessNumber, i);
                                                 totalAttemptscounter++;
                                                 if (guessNumber == basketWeight)
                                                 {
-                                                    Player.Winner(i, guessNumber);                                                  
+                                                    Player.Winner(i, guessNumber);
                                                     break;
                                                 }
 
@@ -145,11 +151,12 @@ namespace GuesGame
                                             {
                                                 guessNumber = Cheater.GuessNumber();
                                                 Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
+                                                AddUniqueNumberToDictonary(numbersGuessedByThePlayers, guessNumber, i);
                                                 totalAttemptscounter++;
 
                                                 if (guessNumber == basketWeight)
                                                 {
-                                                    Player.Winner(i, guessNumber);                                                    
+                                                    Player.Winner(i, guessNumber);
                                                     break;
                                                 }
 
@@ -159,11 +166,12 @@ namespace GuesGame
                                             {
                                                 guessNumber = UberCheater.GuessNumber();
                                                 Console.WriteLine($"Player: {PlayerKeeper._player[i].Name}\nType: {PlayerKeeper._player[i].Type}\nGuessed number: {guessNumber}");
+                                                AddUniqueNumberToDictonary(numbersGuessedByThePlayers, guessNumber, i);
                                                 totalAttemptscounter++;
 
                                                 if (guessNumber == basketWeight)
                                                 {
-                                                    Player.Winner(i, guessNumber);                                                   
+                                                    Player.Winner(i, guessNumber);
                                                     break;
                                                 }
 
@@ -175,9 +183,9 @@ namespace GuesGame
                                         Console.WriteLine("Maximum number of attempts reached! ");
                                         int closestNumber = ClosestNumber(basketWeight);
 
-                                        Console.WriteLine($"The winner is number: {closestNumber}");
+                                        Console.WriteLine($"The winner\n{numbersGuessedByThePlayers[closestNumber]}\n Number Guesses: {closestNumber}");
                                         Console.ReadKey();
-                                        
+
 
                                         break;
                                     }
@@ -198,8 +206,9 @@ namespace GuesGame
                             Console.Clear();
                             Console.Write("Please enter the index of the player you would like to remove: ");
                             Validation.IndexInputValidation();
-                            
-                        }break;
+
+                        }
+                        break;
                     case StartGame.ResetGame:
                         {
                             totalAttemptscounter = 0;
@@ -217,25 +226,26 @@ namespace GuesGame
                         {
                             Console.Clear();
                             Console.WriteLine("There is no such command");
-                            Console.ReadKey();                           
-                        }break;
-                    }
+                            Console.ReadKey();
+                        }
+                        break;
+                }
 
-                
+
             } while (true);
 
-            
+
         }
         public static int ClosestNumber(int basketWeight)
         {
-          return CasualPlayer.totalNumberSheet.ToArray().Aggregate((current, next) => Math.Abs((long)current - basketWeight) < Math.Abs((long)next - basketWeight) ? current : next);
+            return CasualPlayer.totalNumberSheet.ToArray().Aggregate((current, next) => Math.Abs((long)current - basketWeight) < Math.Abs((long)next - basketWeight) ? current : next);
         }
         enum StartGame
         {
             NoItem = 0,
             NewPlayer = 1,
             PlayGame = 2,
-            RemovePlayer =3,
+            RemovePlayer = 3,
             ResetGame = 4,
             Exit = 5
         }
@@ -249,9 +259,18 @@ namespace GuesGame
             UberCheater = 5
 
         }
+
+        public static void AddUniqueNumberToDictonary(Dictionary<int, Player>  dictonary, int guessNumber, int i)
+        {
+            if (!dictonary.ContainsKey(guessNumber))
+            {
+                dictonary.Add(guessNumber, PlayerKeeper._player[i]);
+            }
+        }
     }
-
-
-
-
 }
+
+
+
+
+
