@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace GuesGame
 {
     public class Player
-    {    
+    {
         public Player(string name, string type)
         {
             this.Name = name;
@@ -28,5 +28,57 @@ namespace GuesGame
             Console.ReadKey();
 
         }
+
+        public static string PlayerTypeSelector()
+        {
+            string type = "";
+
+            PlayerType playerType = (PlayerType)Validation.InputNumberValidation();
+
+            switch (playerType)
+            {
+                case PlayerType.CasualPlayer:
+                    {
+                        type = "Casual Player";
+                    }
+                    break;
+                case PlayerType.NotePlayer:
+                    {
+                        type = "Note Player";
+                    }
+                    break;
+                case PlayerType.UberPlayer:
+                    {
+                        type = "Uber Player";
+                    }
+                    break;
+                case PlayerType.Cheater:
+                    {
+                        type = "Cheater";
+                    }
+                    break;
+                case PlayerType.UberCheater:
+                    {
+                        type = "Uber Cheater";
+                    }
+                    break;
+                default:
+                    Console.WriteLine("There is no such player type");
+                    break;
+            }
+            return type;
+        }
+
+        enum PlayerType
+        {
+            NoItem = 0,
+            CasualPlayer = 1,
+            NotePlayer = 2,
+            UberPlayer = 3,
+            Cheater = 4,
+            UberCheater = 5
+
+        }
     }
 }
+

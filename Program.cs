@@ -48,41 +48,7 @@ namespace GuesGame
                             Console.WriteLine("3. Uber Player");
                             Console.WriteLine("4. Cheater");
                             Console.WriteLine("5. Uber Cheater");
-                            string type = "";
-
-                            PlayerType playerType = (PlayerType)Validation.InputNumberValidation();
-
-                            switch (playerType)
-                            {
-                                case PlayerType.CasualPlayer:
-                                    {
-                                        type = "Casual Player";
-                                    }
-                                    break;
-                                case PlayerType.NotePlayer:
-                                    {
-                                        type = "Note Player";
-                                    }
-                                    break;
-                                case PlayerType.UberPlayer:
-                                    {
-                                        type = "Uber Player";
-                                    }
-                                    break;
-                                case PlayerType.Cheater:
-                                    {
-                                        type = "Cheater";
-                                    }
-                                    break;
-                                case PlayerType.UberCheater:
-                                    {
-                                        type = "Uber Cheater";
-                                    }
-                                    break;
-                                default:
-                                    Console.WriteLine("There is no such player type");
-                                    break;
-                            }
+                            string type = Player.PlayerTypeSelector();
 
                             Player player = new Player(name: name, type: type);
                             PlayerKeeper.Add(player);
@@ -216,6 +182,7 @@ namespace GuesGame
                             CasualPlayer.ClearTotalNumberSheet();
                             UberPlayer.Number = 39;
                             UberCheater.Number = 40;
+                            numbersGuessedByThePlayers.Clear();
                         }
                         break;
                     case StartGame.Exit:
@@ -249,16 +216,7 @@ namespace GuesGame
             ResetGame = 4,
             Exit = 5
         }
-        enum PlayerType
-        {
-            NoItem = 0,
-            CasualPlayer = 1,
-            NotePlayer = 2,
-            UberPlayer = 3,
-            Cheater = 4,
-            UberCheater = 5
-
-        }
+       
 
         public static void AddUniqueNumberToDictonary(Dictionary<int, Player>  dictonary, int guessNumber, int i)
         {
